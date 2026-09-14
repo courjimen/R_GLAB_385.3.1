@@ -28,8 +28,28 @@ def add_contact():
             print(f'❌ Error: {e}')
 
 #View contacts
-#Quit out of applications ✅
+# define the view/contact func
+#create the basic try/except block
+#use 'with' to open the file with the correct mode to read
 
+def view_contacts():
+    try: 
+        with open('data/contacts.txt', 'r' ) as f:
+            contacts = f.readlines()
+
+        if not contacts:
+            print('Your list is empty.')
+        else:
+            for person in contacts:
+                    print(person, end='')
+
+
+    except FileNotFoundError as e:
+         print(f'❌ File not found: your path was not found')
+    except Exception as e:
+        print(f'❌ Error: {e}' )
+
+#Quit out of applications ✅
 # Declare a function called "main" it should contain a while True: loop
 def main ():
     while True:
@@ -45,7 +65,7 @@ def main ():
         if choice == '1':
             add_contact()
         elif choice == '2':
-            print('View Contacts')
+            view_contacts()
         elif choice == '3':
             print('👋🏾 Goodbye')
             break
